@@ -1,0 +1,28 @@
+[Round 1]
+P1 Melia move : Arcane Bolt
+P2 Wiq move : Cleave
+________________
+P1 Melia           | Mage       | HP: 80   | EP: 50  
+P2 Wiq             | Warrior    | HP: 80   | EP: 50  
+
+[Round 2]
+P1 Melia move : Arcane Blast
+P2 Wiq move : Shield Bash
+________________
+P1 Melia           | Mage       | HP: 45   | EP: 25  
+P2 Wiq             | Warrior    | HP: 15   | EP: 40  
+
+[Round 3]
+P1 Melia move : Mana Channel
+P2 Wiq move : Rallying Cry
+________________
+P1 Melia           | Mage       | HP: 45   | EP: 45  
+P2 Wiq             | Warrior    | HP: 15   | EP: 57  
+
+[Round 4]
+P1 Melia move : Arcane Blast
+P2 Wiq move : Rallying Cry
+________________
+P1 Melia           | Mage       | HP: 45   | EP: 20  
+P2 Wiq             | Warrior    | HP: 0    | EP: 74  
+

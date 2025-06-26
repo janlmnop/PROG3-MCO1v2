@@ -1,0 +1,197 @@
+[
+  {
+    "name": "Rina",
+    "cl": {
+      "name": "Rogue",
+      "desc": "agile and tricky, relying on precision and debilitating opponents",
+      "abs": [
+        {
+          "name": "Shiv",
+          "desc": "A quick, precise stab that deals 20 physical damage.",
+          "epCost": 5,
+          "effectVal": 20
+        },
+        {
+          "name": "Backstab",
+          "desc": "Strike a vital point and deal 35 points of physical damage.",
+          "epCost": 15,
+          "effectVal": 35
+        },
+        {
+          "name": "Focus",
+          "desc": "Take a moment to concentrate, restoring your mental energy. Restores 10 EP.",
+          "epCost": 0,
+          "effectVal": 10
+        },
+        {
+          "name": "Smoke Bomb",
+          "desc": "Throw a smoke bomb, making you harder to hit. You have a 50% chance of evading any incoming attacks in the current round.",
+          "epCost": 15,
+          "effectVal": 0
+        },
+        {
+          "name": "Sneak Attack",
+          "desc": "You rely on your agility to evade your opponent, taking no damage from any of their attacks, while you deal 45 physical damage to them.",
+          "epCost": 25,
+          "effectVal": 45
+        }
+      ]
+    },
+    "hp": 100,
+    "ep": 50,
+    "charAbs": [
+      {
+        "name": "Shiv",
+        "desc": "A quick, precise stab that deals 20 physical damage.",
+        "epCost": 5,
+        "effectVal": 20
+      },
+      {
+        "name": "Backstab",
+        "desc": "Strike a vital point and deal 35 points of physical damage.",
+        "epCost": 15,
+        "effectVal": 35
+      },
+      {
+        "name": "Smoke Bomb",
+        "desc": "Throw a smoke bomb, making you harder to hit. You have a 50% chance of evading any incoming attacks in the current round.",
+        "epCost": 15,
+        "effectVal": 0
+      }
+    ]
+  },
+  {
+    "name": "Wiq",
+    "cl": {
+      "name": "Warrior",
+      "desc": "tough, focusing on direct combat and robust defense",
+      "abs": [
+        {
+          "name": "Cleave",
+          "desc": "A sweeping strike that deals 20 physical damage.",
+          "epCost": 5,
+          "effectVal": 20
+        },
+        {
+          "name": "Shield Bash",
+          "desc": "Slam your shield into the opponent, dealing 35 physical damage.",
+          "epCost": 15,
+          "effectVal": 35
+        },
+        {
+          "name": "Ironclad Defense",
+          "desc": "Brace yourself, effectively taking no damage for the current round.",
+          "epCost": 15,
+          "effectVal": 0
+        },
+        {
+          "name": "Bloodlust",
+          "desc": "Tap into your inner fury, restoring a small amount of health. Restores 30 HP.",
+          "epCost": 12,
+          "effectVal": 30
+        },
+        {
+          "name": "Rallying Cry",
+          "desc": "Let out a powerful shout, inspiring yourself and recovering 12 EP.",
+          "epCost": 0,
+          "effectVal": 12
+        }
+      ]
+    },
+    "hp": 100,
+    "ep": 50,
+    "charAbs": [
+      {
+        "name": "Cleave",
+        "desc": "A sweeping strike that deals 20 physical damage.",
+        "epCost": 5,
+        "effectVal": 20
+      },
+      {
+        "name": "Shield Bash",
+        "desc": "Slam your shield into the opponent, dealing 35 physical damage.",
+        "epCost": 15,
+        "effectVal": 35
+      },
+      {
+        "name": "Rallying Cry",
+        "desc": "Let out a powerful shout, inspiring yourself and recovering 12 EP.",
+        "epCost": 0,
+        "effectVal": 12
+      }
+    ]
+  },
+  {
+    "name": "test",
+    "cl": {
+      "name": "Rogue",
+      "desc": "agile and tricky, relying on precision and debilitating opponents",
+      "abs": [
+        {
+          "name": "Shiv",
+          "desc": "A quick, precise stab that deals 20 physical damage.",
+          "epCost": 5,
+          "effectVal": 20
+        },
+        {
+          "name": "Backstab",
+          "desc": "Strike a vital point and deal 35 points of physical damage.",
+          "epCost": 15,
+          "effectVal": 35
+        },
+        {
+          "name": "Focus",
+          "desc": "Take a moment to concentrate, restoring your mental energy. Restores 10 EP.",
+          "epCost": 0,
+          "effectVal": 10
+        },
+        {
+          "name": "Smoke Bomb",
+          "desc": "Throw a smoke bomb, making you harder to hit. You have a 50% chance of evading any incoming attacks in the current round.",
+          "epCost": 15,
+          "effectVal": 0
+        },
+        {
+          "name": "Sneak Attack",
+          "desc": "You rely on your agility to evade your opponent, taking no damage from any of their attacks, while you deal 45 physical damage to them.",
+          "epCost": 25,
+          "effectVal": 45
+        }
+      ]
+    },
+    "hp": 100,
+    "ep": 50,
+    "charAbs": [
+      {
+        "name": "Smoke Bomb",
+        "desc": "Throw a smoke bomb, making you harder to hit. You have a 50% chance of evading any incoming attacks in the current round.",
+        "epCost": 15,
+        "effectVal": 0
+      },
+      {
+        "name": "Focus",
+        "desc": "Take a moment to concentrate, restoring your mental energy. Restores 10 EP.",
+        "epCost": 0,
+        "effectVal": 10
+      },
+      {
+        "name": "Backstab",
+        "desc": "Strike a vital point and deal 35 points of physical damage.",
+        "epCost": 15,
+        "effectVal": 35
+      },
+      {
+        "name": "Defend",
+        "desc": "The character takes on a defensive stance and takes only half damage.",
+        "epCost": 5,
+        "effectVal": 0
+      },
+      {
+        "name": "Recharge",
+        "desc": "The character does nothing during the round but regains 5 EP.",
+        "epCost": 0,
+        "effectVal": 5
+      }
+    ]
+  }
+]

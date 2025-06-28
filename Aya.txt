@@ -20,11 +20,11 @@ Recharge
 
 Test
 Warrior
-Cleave
-Shield Bash
-Ironclad Defense
-Bloodlust
 Rallying Cry
+Bloodlust
+Ironclad Defense
+Defend
+Recharge
 100
 50
 

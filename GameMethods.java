@@ -150,26 +150,30 @@ public class GameMethods {
             
         System.out.print("Enter Ability 1 number to add: ");
         a1 = abs.get(input.nextInt()-1);
-        input.nextLine(); // Clear buffer
+        ch.getCharAbs().add(a1);
+        // input.nextLine(); // Clear buffer
 
         System.out.print("Enter Ability 2 number to add: ");
         a2 = abs.get(input.nextInt()-1);
-        input.nextLine(); // Clear buffer
+        ch.getCharAbs().add(a2);
+        // input.nextLine(); // Clear buffer
 
         System.out.print("Enter Ability 3 number to add: ");
         a3 = abs.get(input.nextInt()-1);
-        input.nextLine(); // Clear buffer
+        ch.getCharAbs().add(a3);
+        // input.nextLine(); // Clear buffer
 
         System.out.println("Chosen Abilities:");
         System.out.println(" - " + a1);
         System.out.println(" - " + a2);
         System.out.println(" - " + a3);
 
-        // add defend and recharge to list of moves
-        abs.add(new Ability("Defend", "The character takes on a defensive stance and takes only half damage.", 5, 0));
-        abs.add(new Ability("Recharge", "The character does nothing during the round but regains 5 EP.", 0, 5));
 
-        ch.setCharAbs(abs);
+        // add defend and recharge to list of moves
+        ch.getCharAbs().add(new Ability("Defend", "The character takes on a defensive stance and takes only half damage.", 5, 0));
+        ch.getCharAbs().add(new Ability("Recharge", "The character does nothing during the round but regains 5 EP.", 0, 5));
+
+        // ch.setCharAbs(abs);
     }
 
     // read / view file contents -- I don't think we need this na

@@ -1,0 +1,25 @@
+Arcane Bolt
+Launch a basic magical projectile that deals 20 arcane damage to the target.
+5
+20
+
+Arcane Blast
+Unleash a burst of fiery energy, dealing 65 arcane damage to the target
+30
+65
+
+Mana Channel
+Draw upon ambient magical energy to restore your own. Restores 15 EP.
+0
+15
+
+Lesser Heal
+Weave a minor healing spell to mend your wounds. Restores 40 HP.
+15
+40
+
+Arcane Shield
+Conjure a protective barrier of mystical energy around yourself. You do not take any damage for the round
+12
+0
+

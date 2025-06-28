@@ -22,12 +22,30 @@ public class Class {
     }
 
     /**
+     * Constructs a new Class only with the name.
+     *
+     * @param name the class name
+     */
+    public Class(String name) {
+        this.name = name;
+    }
+
+    /**
      * Gets the class name.
      *
      * @return the class name
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Sets the class name.
+     *
+     * @return the class name
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**

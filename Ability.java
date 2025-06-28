@@ -31,6 +31,15 @@ public class Ability {
     }
 
     /**
+     * Constructs a new Ability only with the specified name.
+     *
+     * @param name      the name of the ability
+     */
+    public Ability(String name) {
+        this.name = name;
+    }
+
+    /**
      * Returns the name of this ability.
      *
      * @return the ability's name
@@ -65,6 +74,43 @@ public class Ability {
     public int getEv() {
         return effectVal;
     }
+
+    /**
+     * Sets the ability's name.
+     *
+     * @param name the new name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Sets the ability's description.
+     *
+     * @param desc the new description
+     */
+    public void setDescription(String desc) {
+        this.desc = desc;
+    }
+
+    /**
+     * Sets the ability's EP cost
+     *
+     * @param epCost the new EP cost
+     */
+    public void setCost(int epCost) {
+        this.epCost = epCost;
+    }
+
+    /**
+     * Sets the ability's effect value
+     *
+     * @param effectVal the new effect value
+     */
+    public void setEffectVal(int effectVal) {
+        this.effectVal = effectVal;
+    }
+
 
     /**
      * Returns a string representation of this ability, including its name, EP cost, and effect value.

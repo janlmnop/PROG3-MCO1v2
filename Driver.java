@@ -50,6 +50,8 @@ public class Driver
                         player1.setName(pName.nextLine());
                         System.out.println("Hi! Player #" + (i+1) + " " + player1.getUserName());
                         System.out.println("                                                ");
+                        gm.readFile(player1);
+                        gm.assignAbilityInfo(player1);
                     }
                         
                     if(i == 1)
@@ -57,6 +59,8 @@ public class Driver
                         player2.setName(pName.nextLine());
                         System.out.println("Hi! Player #" + (i+1) + " " + player2.getUserName());
                         System.out.println("                                                ");
+                        gm.readFile(player2);
+                        gm.assignAbilityInfo(player2);
                     }
 
                     pChoice = 0;
@@ -139,43 +143,39 @@ public class Driver
 
     public static void chooseCharacter(Player player, GameMethods gm, Scanner playerChar, Scanner view) 
     {
-        player.setList(gm.loadCharacters(player.getUserName()));
-            int k;
-            String viewChoice;
-            String playerChosenChar;
+        int k;
+        String viewChoice;
+        String playerChosenChar;
 
+        System.out.print(" Compact[C] or Detailed[D] View? > ");
+        viewChoice = view.nextLine();
+        gm.displayCharacters(player.getList(), viewChoice);
 
-            System.out.print(" Compact[C] or Detailed[D] View? > ");
-            viewChoice = view.nextLine();
-            gm.displayCharacters(player.getList(), viewChoice);
+        System.out.println("\n");
 
-            System.out.println("\n");
+        // checks whether characters exist in a player's list
+        boolean flag = false;
+        do {
+            System.out.print("Enter chosen character name > ");
+            playerChosenChar = playerChar.nextLine();
 
-            // checks whether characters exist in a player's list
-            boolean flag = false;
-            do {
-                System.out.print("Enter chosen character name > ");
-                playerChosenChar = playerChar.nextLine();
-
-                for (k = 0; k < player.getList().size(); k++) 
+            for (k = 0; k < player.getList().size(); k++) 
+            {
+                if(playerChosenChar.equals(player.getList().get(k).getName()))
                 {
-                    if(playerChosenChar.equals(player.getList().get(k).getName()))
-                    {
-                        player.setChosen(player.getList().get(k));
-                        System.out.println("Your Character = " + player.getChosen()); 
-                        flag = true; 
-                    }   
-                }
-                if(flag == false)
-                    System.out.println("Invalid selection! Try again.");
-            } while (flag == false); 
+                    player.setChosen(player.getList().get(k));
+                    System.out.println("Your Character = " + player.getChosen()); 
+                    flag = true; 
+                }   
+            }
+            if(flag == false)
+                System.out.println("Invalid selection! Try again.");
+        } while (flag == false); 
     }
 
     public static void viewCharacters(Player player, GameMethods gm, Scanner view) 
     {
         String viewChoice;
-
-        player.setList(gm.loadCharacters(player.getUserName()));
 
         System.out.print(" Compact[C] or Detailed[D] View? > ");
         viewChoice = view.nextLine();
@@ -187,8 +187,6 @@ public class Driver
     public static void createCharacters(Player player, GameMethods gm) 
     {
         int j;
-
-        player.setList(gm.loadCharacters(player.getUserName()));
 
         if (!player.getList().isEmpty()) {
             System.out.println("\nLoaded " + player.getList().size() + " existing character(s)");
@@ -219,9 +217,6 @@ public class Driver
         {
             if(charToEdit.equals(player.getList().get(l).getName()))
             {
-                //System.out.println("OldList " + player1.getList());
-                //System.out.println("Name " + player1.getList().get(l).getName());
-                //System.out.println("Char " + player1.getList().get(l));
 
                 player.getList().get(l).getCharAbs().clear();
 
@@ -232,8 +227,6 @@ public class Driver
                 gm.saveCharacters(player.getList(), player.getUserName());
                 System.out.println("Saved Abilities in Character" + ch.getName());
 
-                //System.out.println("NewChar " + ch);
-                //System.out.println("NewList " + player1.getList());
                 l = 100;
             }
                
@@ -243,7 +236,6 @@ public class Driver
 
     public static void deleteCharacter(Player player, GameMethods gm)
     {
-        player.setList(gm.loadCharacters(player.getUserName()));
         gm.deleteCharacter(player.getList());
         gm.saveCharacters(player.getList(), player.getUserName());
         gm.displayCharacters(player.getList(), "C");

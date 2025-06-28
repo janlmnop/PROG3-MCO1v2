@@ -1,6 +1,3 @@
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.util.*;
 import java.time.*; 
@@ -8,9 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.lang.Math;
 
 public class GameMethods {
-
-    //for create and view character
-    private Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
 
     private Scanner input = new Scanner(System.in);
     private Scanner pMove = new Scanner(System.in);
@@ -21,8 +15,6 @@ public class GameMethods {
         String className;
         int hp; 
         int ep;
-        int i, j;
-        int choice;
         Class cls = null;
         ArrayList<Ability> abs = new ArrayList<>();
 
@@ -105,7 +97,7 @@ public class GameMethods {
                     input.nextLine(); // Clear buffer
                 } while (choice > cls.getAb().size() || choice < 1);
 
-                abs.add(cls.getAb().get(choice-1)); // NEW : removed if (choice >= 1 && choice <=  cls.getAb().size()) because it won't reach that since it only puts valid input na
+                abs.add(cls.getAb().get(choice-1));
                 j++;
             }
 
@@ -118,7 +110,6 @@ public class GameMethods {
     public Character editCharacter(Character ch) 
     {
         Class cls;
-        // Ability a1, a2, a3;
         ArrayList<Ability> abs = new ArrayList<>();
 
         System.out.println("ClassChar in Edit" + ch.getCl().getName());
@@ -178,35 +169,98 @@ public class GameMethods {
         abs.add(new Ability("Defend", "The character takes on a defensive stance and takes only half damage.", 5, 0));
         abs.add(new Ability("Recharge", "The character does nothing during the round but regains 5 EP.", 0, 5));
 
-        ch.setCharAbs(a1, a2, a3);
+        ch.setCharAbs(abs);
     }
 
-    public ArrayList<Character> loadCharacters(String filename) 
-    {
-        ArrayList<Character> container;
-        
-        File file = new File(filename + ".json");
-        if (!file.exists()) return new ArrayList<>();
+    // read / view file contents -- I don't think we need this na
+    public ArrayList<Character> loadCharacters(String filename) {
+        ArrayList<Character> container = new ArrayList<>();
+        ArrayList<String> another = new ArrayList<>();
 
-        try (Reader reader = new FileReader(filename + ".json")) 
-        {
-            container = gson.fromJson(reader, new TypeToken<ArrayList<Character>>(){}.getType());
+        File file = new File(filename + ".txt");
+        if (!file.exists()) return container;
 
-        } catch (IOException e) 
-        {
-            System.out.println("Error loading: " + e.getMessage());
-            container = new ArrayList<>();
+        try {
+            Scanner reader = new Scanner(file);
+
+            while (reader.hasNextLine()) {
+                String line = reader.nextLine();
+                another.add(line);
+            }
+
+            for(int i=0; i<container.size(); i++) {
+                container.get(i).setName(another.get(i));
+            }
+
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error has occurred.");
+            e.printStackTrace();
         }
 
         return container;
     }
+
+    // this method reads the player's character name, type, abilities, hp, and ep
+    public void readFile(Player player) {
+        try {
+            File Obj = new File(player.getUserName() + ".txt");
+            Scanner stringrdr = new Scanner(Obj);
+            Scanner intrdr = new Scanner(Obj);
+          
+            while (stringrdr.hasNextLine()) {
+                // read name, type, abilities, hp, and ep from a text file
+                String name = stringrdr.nextLine();
+             
+                String type = stringrdr.nextLine();
+                Class class1 = new Class(type);
+
+                // read abilites and assign them to the character's ability pool
+                ArrayList<Ability> newA = new ArrayList<>();
+                for (int i = 0; i < 5; i++) {
+                    if (stringrdr.hasNextLine()) {
+                        String ability = stringrdr.nextLine();
+                        newA.add(new Ability(ability));
+                    }
+                }
+
+                int hp = stringrdr.nextInt();
+                int ep = stringrdr.nextInt();
+
+                // Move to next line after reading numbers (if needed)
+                if (stringrdr.hasNextLine()) stringrdr.nextLine();
+                if (stringrdr.hasNextLine()) stringrdr.nextLine();
+
+                // Add character
+                Character newChar = new Character(name, class1, hp, ep, newA);
+                player.getList().add(newChar);
+            
+            
+            }
+            stringrdr.close();
+            intrdr.close();  
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("An error has occurred.");
+            e.printStackTrace();
+        }
+        
+    }
     
-    public void saveCharacters(ArrayList<Character> characters, String filename) 
-    {
-        try (Writer writer = new FileWriter(filename + ".json")) 
-        {
-            gson.toJson(characters, writer);
-            System.out.println("\nSaved " + characters.size() + " characters to " + filename + ".json");
+    // write / add to file
+    public void saveCharacters(ArrayList<Character> characters, String filename) {
+
+        try (Writer writer = new FileWriter(filename + ".txt")) {
+            for(int i=0; i<characters.size(); i++) {
+                writer.write(characters.get(i).getName() + "\n");
+                writer.write(characters.get(i).getCl() + "\n");
+                for(int j=0; j<5; j++)
+                    writer.write(characters.get(i).getCharAbs().get(j).getName() + "\n");
+                writer.write(characters.get(i).getHp() + "\n");
+                writer.write(characters.get(i).getEp() + "\n\n");
+
+            }
+            System.out.println("\nSaved " + characters.size() + " characters to " + filename + ".txt");
 
         } catch (IOException e) {
             System.out.println("Error saving: " + e.getMessage());
@@ -284,6 +338,143 @@ public class GameMethods {
         return list;
     }
 
+    public ArrayList<Ability> readMageAbilities() {
+        ArrayList<Ability> abilities = new ArrayList<>();
+
+        try {
+            File file = new File("MageAbilities.txt");
+            Scanner reader = new Scanner(file);
+
+            while (reader.hasNextLine()) {
+                String name = reader.nextLine();
+                String desc = reader.nextLine();
+                int epCost = reader.nextInt();
+                int effectVal = reader.nextInt();
+
+                if (reader.hasNextLine()) reader.nextLine();
+                if (reader.hasNextLine()) reader.nextLine();
+
+                abilities.add(new Ability(name, desc, epCost, effectVal));
+            }
+
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Ability file not found.");
+            e.printStackTrace();
+        }
+
+        abilities.add(new Ability("Defend", "The character takes on a defensive stance and takes only half damage.", 5, 0));
+        abilities.add(new Ability("Recharge", "The character does nothing during the round but regains 5 EP.", 0, 5));
+        return abilities;
+    }
+
+    public ArrayList<Ability> readRogueAbilities() {
+        ArrayList<Ability> abilities = new ArrayList<>();
+
+        try {
+            File file = new File("RogueAbilities.txt");
+            Scanner reader = new Scanner(file);
+
+            while (reader.hasNextLine()) {
+                String name = reader.nextLine();
+                String desc = reader.nextLine();
+                int epCost = reader.nextInt();
+                int effectVal = reader.nextInt();
+
+                if (reader.hasNextLine()) reader.nextLine();
+                if (reader.hasNextLine()) reader.nextLine();
+
+                abilities.add(new Ability(name, desc, epCost, effectVal));
+            }
+
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Ability file not found.");
+            e.printStackTrace();
+        }
+
+        abilities.add(new Ability("Defend", "The character takes on a defensive stance and takes only half damage.", 5, 0));
+        abilities.add(new Ability("Recharge", "The character does nothing during the round but regains 5 EP.", 0, 5));
+        return abilities;
+    }
+
+    public ArrayList<Ability> readWarriorAbilities() {
+        ArrayList<Ability> abilities = new ArrayList<>();
+
+        try {
+            File file = new File("WarriorAbilities.txt");
+            Scanner reader = new Scanner(file);
+
+            while (reader.hasNextLine()) {
+                String name = reader.nextLine();
+                String desc = reader.nextLine();
+                int epCost = reader.nextInt();
+                int effectVal = reader.nextInt();
+
+                if (reader.hasNextLine()) reader.nextLine();
+                if (reader.hasNextLine()) reader.nextLine();
+
+                abilities.add(new Ability(name, desc, epCost, effectVal));
+            }
+
+            reader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Ability file not found.");
+            e.printStackTrace();
+        }
+
+        abilities.add(new Ability("Defend", "The character takes on a defensive stance and takes only half damage.", 5, 0));
+        abilities.add(new Ability("Recharge", "The character does nothing during the round but regains 5 EP.", 0, 5));
+        return abilities;
+    }
+
+    // assigns ability info from (class_type)Abilities.txt to the player's character abilities
+    public void assignAbilityInfo(Player player) {
+        ArrayList<Ability> mageAbilities = readMageAbilities();
+        ArrayList<Ability> rogueAbilities = readRogueAbilities();
+        ArrayList<Ability> warriorAbilities = readWarriorAbilities();
+
+        for (int i = 0; i < player.getList().size(); i++) {
+            Character ch = player.getList().get(i);
+            if (ch.getCl().getName().equals("Mage")) {
+                for (int j = 0; j < ch.getCharAbs().size(); j++) {
+                    String name = ch.getCharAbs().get(j).getName();
+                    for (Ability ab : mageAbilities) {
+                        if (ab.getName().equals(name)) {
+                            ch.getCharAbs().get(j).setDescription(ab.getDesc());
+                            ch.getCharAbs().get(j).setCost(ab.getEc());
+                            ch.getCharAbs().get(j).setEffectVal(ab.getEv());
+                        }
+                    }
+                }
+            }
+            if (ch.getCl().getName().equals("Rogue")) {
+                for (int j = 0; j < ch.getCharAbs().size(); j++) {
+                    String name = ch.getCharAbs().get(j).getName();
+                    for (Ability ab : rogueAbilities) {
+                        if (ab.getName().equals(name)) {
+                            ch.getCharAbs().get(j).setDescription(ab.getDesc());
+                            ch.getCharAbs().get(j).setCost(ab.getEc());
+                            ch.getCharAbs().get(j).setEffectVal(ab.getEv());
+                        }
+                    }
+                }
+            }
+            if (ch.getCl().getName().equals("Warrior")) {
+                for (int j = 0; j < ch.getCharAbs().size(); j++) {
+                    String name = ch.getCharAbs().get(j).getName();
+                    for (Ability ab : warriorAbilities) {
+                        if (ab.getName().equals(name)) {
+                            ch.getCharAbs().get(j).setDescription(ab.getDesc());
+                            ch.getCharAbs().get(j).setCost(ab.getEc());
+                            ch.getCharAbs().get(j).setEffectVal(ab.getEv());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     public void playGame(Character p1, Character p2, String p1Name, String p2Name)
     {
         int i;
@@ -326,9 +517,6 @@ public class GameMethods {
                         }
                     }
                 }        
-
-                if (false)
-                    System.out.println("Invalid selection! Enter the exact name.");
             } while (flag != true);
 
             System.out.println("\n\n" + p2.toDetailedString());
@@ -347,9 +535,6 @@ public class GameMethods {
                         }
                     }
                 }        
-
-                if (false)
-                    System.out.println("Invalid selection! Enter the exact name.");
             } while (flag != true);
 
             p1MoveVal = p1.fight(p1MoveStore, p2MoveStore, p2.getHp(), p1.getHp(), p1.getEp());
@@ -378,7 +563,7 @@ public class GameMethods {
             System.out.println("P1 = " + p1);
             System.out.println("P2 = " + p2);
 
-            combatLog.logRoundMoves(rounds, p1MoveStore.getName(), p2MoveStore.getName(), p1, p2); //NEW
+            combatLog.logRoundMoves(rounds, p1MoveStore.getName(), p2MoveStore.getName(), p1, p2);
 
             rounds++;
         }

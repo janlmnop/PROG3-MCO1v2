@@ -1,0 +1,30 @@
+Melia
+Mage
+Arcane Bolt
+Arcane Blast
+Mana Channel
+Defend
+Recharge
+100
+50
+
+Ruti
+Rogue
+Shiv
+Backstab
+Focus
+Defend
+Recharge
+100
+50
+
+Test
+Warrior
+Cleave
+Shield Bash
+Ironclad Defense
+Bloodlust
+Rallying Cry
+100
+50
+

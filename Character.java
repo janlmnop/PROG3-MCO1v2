@@ -6,8 +6,8 @@ import java.lang.Math;
  * This class manages character state and combat actions.
  */
 public class Character {
-    private final String name;
-    private final Class cl;
+    private String name;
+    private Class cl;
     private int hp;
     private int ep;
     private ArrayList<Ability> charAbs;
@@ -27,6 +27,13 @@ public class Character {
         this.cl = cl;
         this.hp = hp;
         this.ep = ep;
+        this.charAbs = new ArrayList<>(charAbs);
+    }
+
+    /**
+     * Constructs a new Character and initializes it only with a new list of abilities.
+     */
+    public Character() {
         this.charAbs = new ArrayList<>(charAbs);
     }
 
@@ -76,6 +83,24 @@ public class Character {
     }
 
     /**
+     * Sets the character's name.
+     *
+     * @param name the new name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Sets the character's class.
+     *
+     * @param cl the new class
+     */
+    public void setCl(Class cl) {
+        this.cl = cl;
+    }
+
+    /**
      * Sets the character's health points.
      *
      * @param hp the new HP value
@@ -91,6 +116,15 @@ public class Character {
      */
     public void setEp(int ep) {
         this.ep = ep;
+    }
+
+    /**
+     * Sets the character's abilities.
+     *
+     * @param charAbs the new list of abilities
+     */
+    public void setCharAbs(ArrayList<Ability> charAbs) {
+    this.charAbs = charAbs;
     }
 
     /**

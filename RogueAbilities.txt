@@ -1,0 +1,25 @@
+Shiv
+A quick, precise stab that deals 20 physical damage.
+5
+20
+
+Backstab
+Strike a vital point and deal 35 points of physical damage.
+15
+35
+
+Focus
+Take a moment to concentrate, restoring your mental energy. Restores 10 EP.
+0
+10
+
+Smoke Bomb
+Throw a smoke bomb, making you harder to hit. You have a 50% chance of evading any incoming attacks in the current round.
+15
+0
+
+Sneak Attack
+You rely on your agility to evade your opponent, taking no damage from any of their attacks, while you deal 45 physical damage to them.
+25
+45
+

@@ -1,0 +1,25 @@
+Cleave
+A sweeping strike that deals 20 physical damage.
+5
+20
+
+Shield Bash
+Slam your shield into the opponent, dealing 35 physical damage.
+15
+35
+
+Ironclad Defense
+Brace yourself, effectively taking no damage for the current round.
+15
+0
+
+Bloodlust
+Tap into your inner fury, restoring a small amount of health. Restores 30 HP.
+12
+30
+
+Rallying Cry
+Let out a powerful shout, inspiring yourself and recovering 12 EP.
+0
+12
+
